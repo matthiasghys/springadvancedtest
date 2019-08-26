@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "werknemers")
@@ -37,6 +38,10 @@ class Werknemer implements Serializable {
     private long rijksRegisterNr;
     @Version
     private int versie;
+
+    @OneToMany
+    @JoinColumn(name="id")
+    private Set<Werknemer> ondergeschikten;
 
     protected Werknemer(){}
 

@@ -17,7 +17,7 @@ public class DefaultWerknemerService implements WerknemerService {
     public DefaultWerknemerService(WerknemerRepository repository) {
         this.repository = repository;
     }
-    
+
     @Override
     public Werknemer findByChefIsNull() {
         return repository.findByChefIsNull();
@@ -26,5 +26,10 @@ public class DefaultWerknemerService implements WerknemerService {
     @Override
     public List<Werknemer> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<Werknemer> findByChef(long id) {
+        return repository.findByChef(id);
     }
 }

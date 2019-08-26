@@ -5,9 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<ul>
-<li th:text="${werknemer}"></li>
-</ul>
+
+<p>Voornaam</p>
+<p class = "bold" th:text="${werknemer.getVoornaam()}"></p>
+<p>Familienaam</p>
+<p class = "bold" th:text="${werknemer.getFamilienaam()}"></p>
+<p>Email adres</p>
+<p class = "bold" th:text="${werknemer.getEmailAdres()}"></p>
+<p>Salaris</p>
+<p class = "bold" th:text="${werknemer.getSalaris()}"></p>
+<p>Jobtitel</p>
+<p class = "bold" th:text="${werknemer.getJobTitel()}"></p>
+<p>Geboorte</p>
+<p class = "bold" th:text="${werknemer.getGeboorte()}"></p>
+
+<img th:src="@{/images/{id}.jpg (id =${werknemer.id})}" alt="">
+
+
 
 </body>
 </html>

@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface WerknemerService {
     Werknemer findByChefIsNull();
     List<Werknemer> findAll();
+    List<Werknemer> findByChef(long id);
 }
