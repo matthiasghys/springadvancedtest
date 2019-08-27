@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 
@@ -14,13 +15,22 @@
 <p class = "bold" th:text="${werknemer.getEmailAdres()}"></p>
 <p>Salaris</p>
 <p class = "bold" th:text="${werknemer.getSalaris()}"></p>
+<p th:if="${werknemer.getChef()!= null}" class="bold" th:text="Chef"></p>
+<a th:if="${werknemer.getChef()!= null}" th:text="|${werknemer.getChef().getVoornaam()} ${werknemer.getChef().getFamilienaam()}|" th:href="@{/werknemers/{id} (id=${werknemer.getChef().getId()})}"></a>
 <p>Jobtitel</p>
-<p class = "bold" th:text="${werknemer.getJobTitel()}"></p>
+<p class = "bold" th:text="${werknemer.getJobTitel().getNaam()}"></p>
 <p>Geboorte</p>
 <p class = "bold" th:text="${werknemer.getGeboorte()}"></p>
+<p class="bold">Ondergeschikten</p>
+    <a style="display: block" th:each="onder:${werknemer.getOndergeschikten()}" th:text="|${onder.getVoornaam()} ${onder.getFamilienaam()}|"
+    th:href="@{/werknemers/{id} (id = ${onder.getId()})}">
+
+    </a>
+
 
 <img th:src="@{/images/{id}.jpg (id =${werknemer.id})}" alt="">
-
+<a th:href="@{/werknemers/{id}/opslag (id= ${werknemer.getId()})}">Opslag</a>
+<a th:href="@{/werknemers/{id}/rijksregisternummer (id= ${werknemer.getId()})}">rijksregisternummer</a>
 
 
 </body>

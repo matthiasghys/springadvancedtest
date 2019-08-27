@@ -1,5 +1,6 @@
 package be.vdab.personeel.domain;
 
+import be.vdab.personeel.constraints.RijksregisterNummer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -25,7 +27,7 @@ class Werknemer implements Serializable {
     @Email
     @Column(name = "email")
     private String emailAdres;
-    @ManyToOne(optional = true)
+    @ManyToOne()
     @JoinColumn(name = "chefid")
     private Werknemer chef;
     @ManyToOne(optional = false)
@@ -40,7 +42,7 @@ class Werknemer implements Serializable {
     private int versie;
 
     @OneToMany
-    @JoinColumn(name="id")
+    @JoinColumn(name="chefid")
     private Set<Werknemer> ondergeschikten;
 
     protected Werknemer(){}
@@ -55,6 +57,7 @@ class Werknemer implements Serializable {
         this.paswoord = paswoord;
         this.geboorte = geboorte;
         this.rijksRegisterNr = rijksRegisterNr;
+
     }
 
     public long getId() {
@@ -96,4 +99,20 @@ class Werknemer implements Serializable {
     public long getRijksRegisterNr() {
         return rijksRegisterNr;
     }
+
+    public Set<Werknemer> getOndergeschikten() {
+        return Collections.unmodifiableSet(ondergeschikten);
+    }
+
+    public void opslag(BigDecimal bedrag){
+        BigDecimal nieuwLoon = salaris.add(bedrag);
+        this.salaris= nieuwLoon;
+    }
+
+
+    public void updateRijksRegisterNr(long nr){
+        this.rijksRegisterNr = nr;
+
+    }
+
 }

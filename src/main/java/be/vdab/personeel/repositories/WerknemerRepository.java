@@ -3,6 +3,7 @@ package be.vdab.personeel.repositories;
 import be.vdab.personeel.domain.Werknemer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 th:text="|Opslag voor ${werknemer.getVoornaam()} ${werknemer.getFamilienaam()}|"></h1>
+<p>Huidig salaris</p>
+<p class="bold" th:text="${werknemer.getSalaris()}"></p>
+<form method="post" th:action="@{/werknemers/{id}/opslag (id= ${werknemer.getId()})}" th:object="${opslagForm}">
+
+    <label for="opslag">Bedrag</label>
+    <input type="number" th:field="*{opslag}" required min = "1" autofocus id="opslag">
+    <input type="submit" value="Opslag">
+</form>
+
+</body>
+</html>

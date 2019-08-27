@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -31,5 +32,16 @@ public class DefaultWerknemerService implements WerknemerService {
     @Override
     public List<Werknemer> findByChef(long id) {
         return repository.findByChef(id);
+    }
+
+    @Override
+    public Werknemer findById(long id) {
+        return repository.findById(id).get();
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void opslagDatabank(Werknemer werknemer) {
+        repository.save(werknemer);
     }
 }
